@@ -1,0 +1,32 @@
+bool containsInt = firstNameTextBox.Text.Any(char.IsDigit);
+
+private void btnOK_Click(object sender, RoutedEventArgs e)  
+        {  
+            // ensures no TextBoxes are empty  
+            if (firstNameTextBox.Text == "")  
+            {  
+                // display popup box  
+                MessageBox.Show("Please fill in all fields","Error",MessageBoxButton.OK,MessageBoxImage.Error);  
+                firstNameTextBox.Focus(); // set focus to lastNameTextBox  
+                return;  
+            } 
+             // if first name contains numver 
+            if (!containsInt)  
+            {  
+                // first name box contains number
+                MessageBox.Show("Invalid first name. Cannot add number as a first name!", "Message", MessageBoxButton.OK,MessageBoxImage.Error);  
+                firstNameTextBox.Focus();  
+                return;  
+            } 
+            // if first name format invalid show message  
+            if (!Regex.Match(firstNameTextBox.Text, "^[A-Z][a-zA-Z]*$").Success)  
+            {  
+                // first name was incorrect  
+                MessageBox.Show("Invalid first name", "Message", MessageBoxButton.OK,MessageBoxImage.Error);  
+                firstNameTextBox.Focus();  
+                return;  
+            } 
+            // information is valid, signal user and exit application  
+            this.Hide(); // hide main window while MessageBox displays  
+            MessageBox.Show("Thank You!", "Information Correct",MessageBoxButton.OK,MessageBoxImage.Information);   
+        } 
